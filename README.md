@@ -59,35 +59,20 @@ The dataset contains detailed attempt records for three quizzes with the followi
 ```
 Class Project/
 ├── README.md                                 # This file
-├── Group-D-Final_Notebook.ipynb              # Main analysis notebook
 │
-├── CS3751_Source_Code/
-│   └── source_code/
-│       ├── 01_data_preprocessing.py         # Data cleaning & preparation
-│       ├── 02_generate_visualizations.py    # Hypothesis visualization generation
-│       ├── README.md                        # Code documentation
-│       │
-│       ├── data/
-│       │   ├── quiz1_marks.csv              # Raw Quiz 1 data
-│       │   ├── quiz2_marks.csv              # Raw Quiz 2 data
-│       │   ├── quiz3_marks.csv              # Raw Quiz 3 data
-│       │   └── cleaned_data.csv             # Preprocessed dataset
-│       │
-│       └── figures/
-│           ├── grouped_boxplot_60min.png    # H1 visualization
-│           ├── grouped_bar_quiz_*.png       # H2 visualizations
-│           ├── progress_analysis_quiz_*.png # H3 visualizations
-│           ├── quiz_*_analysis.png          # H4 visualizations
-│           ├── optimal_time_*.png           # H5 visualization
-│           ├── (T2 hypothesis figures)      # Task 2 visualizations
-│           └── ...
-│
-├── dataset/
-│   └── marks/                               # Original data source
-│       ├── quiz1/, quiz2/, quiz3/
-│       └── quiz*_marks.csv
-│
-└── [Project Report PDF]                     # Final submission document
+└── Group-D/
+    ├── README.md                            # Project documentation
+    ├── Group-D-Final_Notebook.ipynb         # Main analysis notebook
+    ├── cleaned_data.csv                     # Preprocessed dataset (copy)
+    │
+    └── Data_Preprocessing/
+        ├── 01_data_preprocessing.py         # Data cleaning & preparation script
+        │
+        └── data/
+            ├── cleaned_data.csv             # Preprocessed dataset (main output)
+            ├── quiz1_marks.csv              # Raw Quiz 1 data
+            ├── quiz2_marks.csv              # Raw Quiz 2 data
+            └── quiz3_marks.csv              # Raw Quiz 3 data
 ```
 
 ---
@@ -101,10 +86,10 @@ Class Project/
 
 ### Installation
 
-1. **Clone/download the repository** and navigate to the project folder:
+1. **Navigate to the Group-D project folder:**
 
 ```bash
-cd "d:\My Campus Work\Sem 06\Data Visulization\Class Project"
+cd "d:\My Campus Work\Sem 06\Data Visulization\Class Project\Group-D"
 ```
 
 2. **Install required packages:**
@@ -135,16 +120,12 @@ jupyter notebook "Group-D-Final_Notebook.ipynb"
 
 #### **Option B: Command-Line Scripts**
 
-Navigate to `CS3751_Source_Code/source_code/` and run:
+From the Group-D folder, run:
 
 ```bash
-# Step 1: Preprocess raw data
-python 01_data_preprocessing.py
-# Output: data/cleaned_data.csv
-
-# Step 2: Generate all visualizations
-python 02_generate_visualizations.py
-# Output: PNG files in figures/
+# Step 1: Preprocess raw data (generates cleaned_data.csv)
+python Data_Preprocessing/01_data_preprocessing.py
+# Output: cleaned_data.csv (in Data_Preprocessing/data/ directory)
 ```
 
 ---
@@ -157,7 +138,7 @@ The `cleaned_data.csv` file is the **preprocessed dataset** generated from the r
 
 ### **Raw Data Files** (Input)
 
-The three raw CSV files are located in `data/` folder:
+The three raw CSV files are located in the `Group-D/Data_Preprocessing/data/` subfolder:
 
 - **quiz1_marks.csv** - Raw Quiz 1 attempt data
 - **quiz2_marks.csv** - Raw Quiz 2 attempt data
@@ -226,18 +207,18 @@ The cleaned file contains the following columns:
 ### **How to Generate cleaned_data.csv**
 
 ```bash
-# Navigate to the source code folder
-cd "CS3751_Source_Code/source_code"
+# Navigate to the Group-D folder
+cd "d:\My Campus Work\Sem 06\Data Visulization\Class Project\Group-D"
 
-# Make sure the raw data files are in the data/ folder:
-# - data/quiz1_marks.csv
-# - data/quiz2_marks.csv
-# - data/quiz3_marks.csv
+# Make sure the raw data files are in the Data_Preprocessing/data/ folder:
+# - Data_Preprocessing/data/quiz1_marks.csv
+# - Data_Preprocessing/data/quiz2_marks.csv
+# - Data_Preprocessing/data/quiz3_marks.csv
 
 # Run the preprocessing script
-python 01_data_preprocessing.py
+python Data_Preprocessing/01_data_preprocessing.py
 
-# This will output: data/cleaned_data.csv
+# This will output: Data_Preprocessing/data/cleaned_data.csv
 ```
 
 ## �📈 Visualization Design Principles Used

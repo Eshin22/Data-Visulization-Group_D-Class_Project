@@ -1,10 +1,12 @@
 import pandas as pd
 import numpy as np
 import re
+import os
 
 # Configuration paths
-DATA_PATH = "d:/My Campus Work/Sem 06/Data Visulization/Class Project/CS3751_Source_Code/source_code/data/"
-SAVE_PATH = "d:/My Campus Work/Sem 06/Data Visulization/Class Project/CS3751_Source_Code/source_code/data/cleaned_data.csv"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_PATH = os.path.join(BASE_DIR, "data") + os.sep
+SAVE_PATH = os.path.join(BASE_DIR, "data", "cleaned_data.csv")
 
 
 def parse_time_seconds(time_str):
