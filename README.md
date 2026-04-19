@@ -309,21 +309,21 @@ After running `01_data_preprocessing.py`, verify that:
 
 ### **Task 1 Findings**
 
-| H1  | ✅ **ACCEPTED** | Clear positive correlation between time and grade                           |
-| --- | --------------- | --------------------------------------------------------------------------- |
-| H2  | ✅ **ACCEPTED** | Question 4 (Q1-Q2) and Q3 (Q3) consistently harder; lower mean scores       |
-| H3  | ✅ **ACCEPTED** | High performers show monotonic improvement; low performers volatile         |
-| H4  | ✅ **ACCEPTED** | Longer times for harder Q; high performers solve faster despite complexity  |
-| H5  | ✅ **ACCEPTED** | Optimal range 15–30 min; extreme times (0–5 min, 50+ min) have lower grades |
+| H1  | ❌ **REJECTED** | Moderate time (5–20 min) performs best; very long times have lower scores |
+| --- | --------------- | ------------------------------------------------------------------------- |
+| H2  | ✅ **ACCEPTED** | Question 4 (Q1-Q2) and Q3 (Q3) consistently harder; lower mean scores     |
+| H3  | ❌ **REJECTED** | High performers plateau (ceiling effect); low performers improve steadily |
+| H4  | ❌ **REJECTED** | Time distributions overlap substantially; no consistent speed advantage   |
+| H5  | ❌ **REJECTED** | Faster completion correlates with higher grades; no inverted-U peak       |
 
 ### **Task 2 Findings**
 
-| T2-H1 | ✅ **ACCEPTED** | Spearman ρ = –0.34, p < 0.05 (negative correlation: lower initial scores → more retries)   |
-| ----- | --------------- | ------------------------------------------------------------------------------------------ |
-| T2-H2 | ✅ **ACCEPTED** | Attempt 1→2 gain ~2.1 pts on average; gains diminish after attempt 3                       |
-| T2-H3 | ✅ **ACCEPTED** | Shorter gaps (≤1 h) show median gain +1.8; longer gaps (>3 d) show +0.4                    |
-| T2-H4 | ✅ **ACCEPTED** | 65% of 8+ achievers reach score by attempt 2; plateau ~80% by attempt 3                    |
-| T2-H5 | ✅ **ACCEPTED** | Quiz 1: μ=5.2, Quiz 2: μ=5.8, Quiz 3: μ=6.4; monotonic improvement (Kruskal-Wallis p<0.05) |
+| T2-H1 | ✅ **ACCEPTED** | Students scoring 0–2 initially typically retried twice; students scoring 4+ stopped after one attempt |
+| ----- | --------------- | ----------------------------------------------------------------------------------------------------- |
+| T2-H2 | ❌ **REJECTED** | Only Quiz 3 shows strong early gain; Quizzes 1 and 2 remain flat across early attempts                |
+| T2-H3 | ✅ **ACCEPTED** | Immediate retries show largest median improvement; longer delays show marginal gains                  |
+| T2-H4 | ✅ **ACCEPTED** | Most 8+ attainment happens by Attempts 2–3; gains become marginal after                               |
+| T2-H5 | ✅ **ACCEPTED** | First-attempt mean increases from 3.37 → 4.66 → 6.18 across Quiz 1–3 (cumulative learning)            |
 
 ---
 
