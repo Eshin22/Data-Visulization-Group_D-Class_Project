@@ -240,19 +240,6 @@ python 01_data_preprocessing.py
 # This will output: data/cleaned_data.csv
 ```
 
-### **Verification Checklist**
-
-After running `01_data_preprocessing.py`, verify that:
-
-- ✅ `data/cleaned_data.csv` file has been created
-- ✅ File size is > 100 KB (indicates substantial data)
-- ✅ Opening in Excel/CSV viewer shows ~2000+ rows
-- ✅ All expected columns are present (quiz, attempt_num, grade, q1-q5, time_minutes)
-- ✅ No empty grade or student code columns
-- ✅ Grade values are between 0-10
-
----
-
 ## �📈 Visualization Design Principles Used
 
 ### **Marks & Channels** (per visualization)
@@ -327,50 +314,6 @@ After running `01_data_preprocessing.py`, verify that:
 
 ---
 
-## 🔧 Customization Guide
-
-### **Change Quiz Selection**
-
-Edit the notebook cell or script:
-
-```python
-QUIZZES_TO_INCLUDE = [1, 2, 3]  # Analyze specific quizzes
-ATTEMPTS_TO_INCLUDE = [1]        # Filter by attempt number
-```
-
-### **Adjust Visualization Parameters**
-
-```python
-# Time bins for H1 analysis
-bins = [0, 5, 10, 15, 20, 25, 30, 40, 50, 60]
-
-# Color palettes
-palette = "Set2"  # or "Dark2", "husl", etc.
-
-# Figure size
-plt.figure(figsize=(14, 7))
-```
-
-### **Statistical Testing**
-
-The notebook includes:
-
-- **Spearman Rank Correlation**: Non-parametric test for monotonic relationships
-- **Kruskal-Wallis H-Test**: Non-parametric test for differences across groups
-- **95% Confidence Intervals**: Bootstrap-based or standard error bands
-
----
-
-## 📝 Files Description
-
-| File                            | Purpose                                                   | Output                     |
-| ------------------------------- | --------------------------------------------------------- | -------------------------- |
-| `01_data_preprocessing.py`      | Merges 3 quiz CSVs; parses time strings; filters outliers | `cleaned_data.csv`         |
-| `02_generate_visualizations.py` | Reads cleaned data; generates all 10+ PNG figures         | `figures/*.png`            |
-| Jupyter Notebook                | Interactive exploration + statistical validation          | PNG outputs + inline plots |
-
----
-
 ## 🤝 Group Information
 
 **Group:** D
@@ -385,41 +328,3 @@ The notebook includes:
 
 **Submission Date:** [Add submission deadline]  
 **Course:** CS3751 Data Visualization (Semester 6)
-
----
-
-## 📚 References & Resources
-
-- **Visualization Design**: _Fundamentals of Data Visualization_ by Claus O. Wilke
-- **Statistical Testing**: _The Book of Why_ by Judea Pearl (causal inference context)
-- **Seaborn Docs**: https://seaborn.pydata.org/
-- **Matplotlib Docs**: https://matplotlib.org/
-
----
-
-## 📧 Support
-
-For questions or issues:
-
-1. Check the Jupyter notebook's inline comments
-2. Review the code documentation in source files
-3. Inspect generated PNG files in `figures/` folder for visual validation
-
----
-
-## ✅ Checklist for Final Submission
-
-- [ ] All 10 hypotheses documented with clear visualizations
-- [ ] Statistical tests included (Spearman, Kruskal-Wallis, etc.)
-- [ ] Design principles justified (marks, channels, colors)
-- [ ] Source code files (`01_`, `02_`) executable and well-commented
-- [ ] README.md (this file) included in submission
-- [ ] All visualization PNG files saved in `figures/` folder
-- [ ] `cleaned_data.csv` successfully generated in `data/` folder
-- [ ] Jupyter notebook exported as `.ipynb` for reproducibility
-- [ ] Data preprocessing completed without errors
-
----
-
-**Generated for CS3751 Data Visualization Class Project**  
-_Last Updated: April 2026_
