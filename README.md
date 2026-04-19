@@ -59,7 +59,7 @@ The dataset contains detailed attempt records for three quizzes with the followi
 ```
 Class Project/
 ├── README.md                                 # This file
-├── Class__Project_Hypothesis_05-1 (1).ipynb # Main analysis notebook
+├── Group-D-Final_Notebook.ipynb              # Main analysis notebook
 │
 ├── CS3751_Source_Code/
 │   └── source_code/
@@ -126,7 +126,7 @@ pip install pandas numpy matplotlib seaborn scipy scikit-learn reportlab
 #### **Option A: Interactive Jupyter Notebook** (Recommended)
 
 ```bash
-jupyter notebook "Class__Project_Hypothesis_05-1 (1).ipynb"
+jupyter notebook "Group-D-Final_Notebook.ipynb"
 ```
 
 - Run cells sequentially to explore each hypothesis
