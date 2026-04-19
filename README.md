@@ -1,4 +1,5 @@
 # CS3751 Data Visualization – Class Project
+
 ## Quiz Performance Analysis & Hypothesis Verification
 
 ---
@@ -33,23 +34,23 @@ The dataset contains detailed attempt records for three quizzes with the followi
 
 ### **Task 1: Provided Hypotheses** (5 hypotheses)
 
-| # | Hypothesis | Visualization Type | Key Finding |
-|---|------------|-------------------|------------|
-| **H1** | Students who take **longer** to complete the quiz tend to score **higher** | Box Plot with Red-Gradient Means | Time investment correlates with performance |
-| **H2** | Some questions are **consistently harder** than others | Grouped Bar Chart | Question 4 (Quizzes 1-2) and Q3 (Quiz 3) are most difficult |
-| **H3** | **High performers consistently improve** over attempts; **low performers erratic** | Slopegraph + Individual Trajectories | Clear divergence in improvement patterns |
-| **H4** | **Harder questions take longer**, but **high performers answer faster** | Violin Plot + Strip Plot | Performance group affects time-to-difficulty relationship |
-| **H5** | **Optimal time range exists**; too fast/slow students score lower | Point Plot with Error Bars | Bell-curve pattern around 15-30 minute range |
+| #      | Hypothesis                                                                         | Visualization Type                   | Key Finding                                                 |
+| ------ | ---------------------------------------------------------------------------------- | ------------------------------------ | ----------------------------------------------------------- |
+| **H1** | Students who take **longer** to complete the quiz tend to score **higher**         | Box Plot with Red-Gradient Means     | Time investment correlates with performance                 |
+| **H2** | Some questions are **consistently harder** than others                             | Grouped Bar Chart                    | Question 4 (Quizzes 1-2) and Q3 (Quiz 3) are most difficult |
+| **H3** | **High performers consistently improve** over attempts; **low performers erratic** | Slopegraph + Individual Trajectories | Clear divergence in improvement patterns                    |
+| **H4** | **Harder questions take longer**, but **high performers answer faster**            | Violin Plot + Strip Plot             | Performance group affects time-to-difficulty relationship   |
+| **H5** | **Optimal time range exists**; too fast/slow students score lower                  | Point Plot with Error Bars           | Bell-curve pattern around 15-30 minute range                |
 
 ### **Task 2: Independent Hypotheses** (5 hypotheses)
 
-| # | Hypothesis | Visualization Type | Conclusion |
-|---|------------|-------------------|-----------|
-| **T2-H1** | **Lower first-attempt scores** lead to **more retries** | Line Plot with IQR Ribbon | Spearman correlation test |
-| **T2-H2** | **Attempt 1→2 shows strongest gain**; diminishing returns after | Multi-series Line Plot | Marginal gain visualization |
-| **T2-H3** | **Shorter time gaps between retries** → **larger improvements** | Box Plot by Time Bins | Temporal spacing affects learning |
-| **T2-H4** | **Reaching 8+ score plateaus** after 3 attempts | Area Chart + Marginal Gain Bars | Saturation effect detected |
-| **T2-H5** | **First-attempt performance improves** across quiz sequence | Bar Chart with 95% CI | Cross-quiz learning trend |
+| #         | Hypothesis                                                      | Visualization Type              | Conclusion                        |
+| --------- | --------------------------------------------------------------- | ------------------------------- | --------------------------------- |
+| **T2-H1** | **Lower first-attempt scores** lead to **more retries**         | Line Plot with IQR Ribbon       | Spearman correlation test         |
+| **T2-H2** | **Attempt 1→2 shows strongest gain**; diminishing returns after | Multi-series Line Plot          | Marginal gain visualization       |
+| **T2-H3** | **Shorter time gaps between retries** → **larger improvements** | Box Plot by Time Bins           | Temporal spacing affects learning |
+| **T2-H4** | **Reaching 8+ score plateaus** after 3 attempts                 | Area Chart + Marginal Gain Bars | Saturation effect detected        |
+| **T2-H5** | **First-attempt performance improves** across quiz sequence     | Bar Chart with 95% CI           | Cross-quiz learning trend         |
 
 ---
 
@@ -102,16 +103,19 @@ Class Project/
 ### Installation
 
 1. **Clone/download the repository** and navigate to the project folder:
+
 ```bash
 cd "d:\My Campus Work\Sem 06\Data Visulization\Class Project"
 ```
 
 2. **Install required packages:**
+
 ```bash
 pip install pandas numpy matplotlib seaborn scipy scikit-learn reportlab
 ```
 
 **Package Details:**
+
 - `pandas`: Data manipulation & CSV I/O
 - `numpy`: Numerical computations
 - `matplotlib` & `seaborn`: Visualization rendering
@@ -122,14 +126,17 @@ pip install pandas numpy matplotlib seaborn scipy scikit-learn reportlab
 ### Running the Analysis
 
 #### **Option A: Interactive Jupyter Notebook** (Recommended)
+
 ```bash
 jupyter notebook "Class__Project_Hypothesis_05-1 (1).ipynb"
 ```
+
 - Run cells sequentially to explore each hypothesis
 - Modify parameters (e.g., quiz selection, attempt filtering) interactively
 - Visualizations render inline for immediate review
 
 #### **Option B: Command-Line Scripts**
+
 Navigate to `CS3751_Source_Code/source_code/` and run:
 
 ```bash
@@ -153,22 +160,26 @@ python 03_build_report.py
 ### **Marks & Channels** (per visualization)
 
 #### **Position & Length** (Most Effective for Numerical Comparisons)
+
 - **Box Plots** (H1, T2-H3): Position on y-axis shows grade distribution; box length shows IQR
 - **Bar Charts** (H2, T2-H5): Length encodes average score per question/quiz
 - **Line Plots** (T2-H1, T2-H2): Position on both axes shows score vs. attempt/time
 
 #### **Color** (Categorical & Quantitative Encoding)
+
 - **Red Gradient** (H1): Light→Dark red intensity encodes mean grade value
 - **Sequential Blue** (H2): Darker blue = later attempts (natural progression)
 - **Categorical Palette** (T2-H2): Set1 colors distinguish quizzes clearly
 - **White Median Ticks** (T2-H5): Contrasts with blue bars for visibility
 
 #### **Area** (Distribution & Density)
+
 - **Violin Plots** (H4): Width shows probability density; quartile bands aid interpretation
 - **Fill Under Curve** (T2-H4): Area emphasizes total attainment trajectory
 - **IQR Ribbons** (T2-H1): Shaded band shows middle 50% of data
 
 #### **Size & Opacity**
+
 - **Scatter Plots**: Larger dots for important statistics (e.g., mean); alpha=0.1–0.3 for jittered points reduces overplotting
 - **Error Bars**: 95% CI half-widths show confidence bounds on means
 
@@ -200,20 +211,20 @@ python 03_build_report.py
 
 ### **Task 1 Findings**
 
-| H1 | ✅ **ACCEPTED** | Clear positive correlation between time and grade |
-|---|---|---|
-| H2 | ✅ **ACCEPTED** | Question 4 (Q1-Q2) and Q3 (Q3) consistently harder; lower mean scores |
-| H3 | ✅ **ACCEPTED** | High performers show monotonic improvement; low performers volatile |
-| H4 | ✅ **ACCEPTED** | Longer times for harder Q; high performers solve faster despite complexity |
-| H5 | ✅ **ACCEPTED** | Optimal range 15–30 min; extreme times (0–5 min, 50+ min) have lower grades |
+| H1  | ✅ **ACCEPTED** | Clear positive correlation between time and grade                           |
+| --- | --------------- | --------------------------------------------------------------------------- |
+| H2  | ✅ **ACCEPTED** | Question 4 (Q1-Q2) and Q3 (Q3) consistently harder; lower mean scores       |
+| H3  | ✅ **ACCEPTED** | High performers show monotonic improvement; low performers volatile         |
+| H4  | ✅ **ACCEPTED** | Longer times for harder Q; high performers solve faster despite complexity  |
+| H5  | ✅ **ACCEPTED** | Optimal range 15–30 min; extreme times (0–5 min, 50+ min) have lower grades |
 
 ### **Task 2 Findings**
 
-| T2-H1 | ✅ **ACCEPTED** | Spearman ρ = –0.34, p < 0.05 (negative correlation: lower initial scores → more retries) |
-|---|---|---|
-| T2-H2 | ✅ **ACCEPTED** | Attempt 1→2 gain ~2.1 pts on average; gains diminish after attempt 3 |
-| T2-H3 | ✅ **ACCEPTED** | Shorter gaps (≤1 h) show median gain +1.8; longer gaps (>3 d) show +0.4 |
-| T2-H4 | ✅ **ACCEPTED** | 65% of 8+ achievers reach score by attempt 2; plateau ~80% by attempt 3 |
+| T2-H1 | ✅ **ACCEPTED** | Spearman ρ = –0.34, p < 0.05 (negative correlation: lower initial scores → more retries)   |
+| ----- | --------------- | ------------------------------------------------------------------------------------------ |
+| T2-H2 | ✅ **ACCEPTED** | Attempt 1→2 gain ~2.1 pts on average; gains diminish after attempt 3                       |
+| T2-H3 | ✅ **ACCEPTED** | Shorter gaps (≤1 h) show median gain +1.8; longer gaps (>3 d) show +0.4                    |
+| T2-H4 | ✅ **ACCEPTED** | 65% of 8+ achievers reach score by attempt 2; plateau ~80% by attempt 3                    |
 | T2-H5 | ✅ **ACCEPTED** | Quiz 1: μ=5.2, Quiz 2: μ=5.8, Quiz 3: μ=6.4; monotonic improvement (Kruskal-Wallis p<0.05) |
 
 ---
@@ -221,13 +232,16 @@ python 03_build_report.py
 ## 🔧 Customization Guide
 
 ### **Change Quiz Selection**
+
 Edit the notebook cell or script:
+
 ```python
 QUIZZES_TO_INCLUDE = [1, 2, 3]  # Analyze specific quizzes
 ATTEMPTS_TO_INCLUDE = [1]        # Filter by attempt number
 ```
 
 ### **Adjust Visualization Parameters**
+
 ```python
 # Time bins for H1 analysis
 bins = [0, 5, 10, 15, 20, 25, 30, 40, 50, 60]
@@ -240,7 +254,9 @@ plt.figure(figsize=(14, 7))
 ```
 
 ### **Statistical Testing**
+
 The notebook includes:
+
 - **Spearman Rank Correlation**: Non-parametric test for monotonic relationships
 - **Kruskal-Wallis H-Test**: Non-parametric test for differences across groups
 - **95% Confidence Intervals**: Bootstrap-based or standard error bands
@@ -249,12 +265,12 @@ The notebook includes:
 
 ## 📝 Files Description
 
-| File | Purpose | Output |
-|------|---------|--------|
-| `01_data_preprocessing.py` | Merges 3 quiz CSVs; parses time strings; filters outliers | `cleaned_data.csv` |
-| `02_generate_visualizations.py` | Reads cleaned data; generates all 10+ PNG figures | `figures/*.png` |
-| `03_build_report.py` | Compiles report with intro, methodology, results, conclusion | `CS3751_Project_Report.pdf` |
-| Jupyter Notebook | Interactive exploration + statistical validation | PNG outputs + inline plots |
+| File                            | Purpose                                                      | Output                      |
+| ------------------------------- | ------------------------------------------------------------ | --------------------------- |
+| `01_data_preprocessing.py`      | Merges 3 quiz CSVs; parses time strings; filters outliers    | `cleaned_data.csv`          |
+| `02_generate_visualizations.py` | Reads cleaned data; generates all 10+ PNG figures            | `figures/*.png`             |
+| `03_build_report.py`            | Compiles report with intro, methodology, results, conclusion | `CS3751_Project_Report.pdf` |
+| Jupyter Notebook                | Interactive exploration + statistical validation             | PNG outputs + inline plots  |
 
 ---
 
@@ -262,13 +278,13 @@ The notebook includes:
 
 **Group:** D
 
-| Index No. | Name |
-|-----------|------|
-| 220538D | A.C.H. Rupasinghe |
-| 220138C | D.M.S.H. Dissanayake |
-| 220144P | J.S.P. Diwakar |
-| 220234R | I.M.D.P. Illangasinghe |
-| 220165F | K.A.E.M. Fernando |
+| Index No. | Name                   |
+| --------- | ---------------------- |
+| 220538D   | A.C.H. Rupasinghe      |
+| 220138C   | D.M.S.H. Dissanayake   |
+| 220144P   | J.S.P. Diwakar         |
+| 220234R   | I.M.D.P. Illangasinghe |
+| 220165F   | K.A.E.M. Fernando      |
 
 **Submission Date:** [Add submission deadline]  
 **Course:** CS3751 Data Visualization (Semester 6)
@@ -277,8 +293,8 @@ The notebook includes:
 
 ## 📚 References & Resources
 
-- **Visualization Design**: *Fundamentals of Data Visualization* by Claus O. Wilke
-- **Statistical Testing**: *The Book of Why* by Judea Pearl (causal inference context)
+- **Visualization Design**: _Fundamentals of Data Visualization_ by Claus O. Wilke
+- **Statistical Testing**: _The Book of Why_ by Judea Pearl (causal inference context)
 - **Seaborn Docs**: https://seaborn.pydata.org/
 - **Matplotlib Docs**: https://matplotlib.org/
 
@@ -287,6 +303,7 @@ The notebook includes:
 ## 📧 Support
 
 For questions or issues:
+
 1. Check the Jupyter notebook's inline comments
 2. Review the code documentation in source files
 3. Inspect generated PNG files in `figures/` folder for visual validation
@@ -308,4 +325,4 @@ For questions or issues:
 ---
 
 **Generated for CS3751 Data Visualization Class Project**  
-*Last Updated: April 2026*
+_Last Updated: April 2026_
