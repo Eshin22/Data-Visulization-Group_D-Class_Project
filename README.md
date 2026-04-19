@@ -65,7 +65,6 @@ Class Project/
 │   └── source_code/
 │       ├── 01_data_preprocessing.py         # Data cleaning & preparation
 │       ├── 02_generate_visualizations.py    # Hypothesis visualization generation
-│       ├── 03_build_report.py               # PDF report compilation
 │       ├── README.md                        # Code documentation
 │       │
 │       ├── data/
@@ -121,7 +120,6 @@ pip install pandas numpy matplotlib seaborn scipy scikit-learn reportlab
 - `matplotlib` & `seaborn`: Visualization rendering
 - `scipy`: Statistical tests (Spearman, Kruskal-Wallis)
 - `scikit-learn`: (Optional) Additional ML utilities
-- `reportlab`: PDF report generation
 
 ### Running the Analysis
 
@@ -147,15 +145,115 @@ python 01_data_preprocessing.py
 # Step 2: Generate all visualizations
 python 02_generate_visualizations.py
 # Output: PNG files in figures/
-
-# Step 3: Compile PDF report
-python 03_build_report.py
-# Output: CS3751_Project_Report.pdf
 ```
 
 ---
 
-## 📈 Visualization Design Principles Used
+## � Data Preprocessing & cleaned_data.csv Generation
+
+### **What is cleaned_data.csv?**
+
+The `cleaned_data.csv` file is the **preprocessed dataset** generated from the raw quiz CSV files. It combines and standardizes all three quizzes (quiz1_marks.csv, quiz2_marks.csv, quiz3_marks.csv) into a single analysis-ready file.
+
+### **Raw Data Files** (Input)
+
+The three raw CSV files are located in `data/` folder:
+
+- **quiz1_marks.csv** - Raw Quiz 1 attempt data
+- **quiz2_marks.csv** - Raw Quiz 2 attempt data
+- **quiz3_marks.csv** - Raw Quiz 3 attempt data
+
+Each raw file contains:
+
+- Student Code
+- Attempt start time
+- Attempt end time
+- Time taken (in various formats)
+- Grade (out of 10)
+- Individual question marks (q1, q2, q3, q4, q5)
+
+### **Data Preprocessing Steps** (01_data_preprocessing.py)
+
+The `01_data_preprocessing.py` script performs the following operations:
+
+#### **1. Load & Merge**
+
+- Reads all three quiz CSV files independently
+- Adds a `quiz` column to identify which quiz the record belongs to (1, 2, or 3)
+- Concatenates all data into a single DataFrame
+
+#### **2. Time Parsing & Standardization**
+
+- Converts `time_taken` column from various string formats to numeric minutes
+- Handles different time formats: "HH:MM:SS", "MM:SS", simple minutes, etc.
+- Creates `time_minutes` column for consistent time-based analysis
+
+#### **3. Attempt Numbering**
+
+- Identifies duplicate students within each quiz (multiple attempts)
+- Assigns sequential `attempt_num` (1st attempt, 2nd attempt, 3rd+ attempt)
+- Sorted by student and start time to ensure correct attempt ordering
+
+#### **4. Data Validation & Cleaning**
+
+- Removes incomplete records (missing grade, student code, or quiz number)
+- Filters outliers (e.g., attempts with 0 minutes time, invalid grades)
+- Validates that all question marks (q1-q5) are numeric and between 0-2
+- Removes duplicate entries (same student, same quiz, same timestamp)
+
+#### **5. Column Standardization**
+
+- Ensures consistent column naming across all records
+- Casts data types correctly (integer for codes/quiz/attempt, float for grades/times)
+- Calculates derived metrics if needed
+
+### **Output: cleaned_data.csv**
+
+The cleaned file contains the following columns:
+
+| Column                       | Type     | Description                                |
+| ---------------------------- | -------- | ------------------------------------------ |
+| `Student Code`               | int      | Unique student identifier                  |
+| `quiz`                       | int      | Quiz number (1, 2, or 3)                   |
+| `attempt_num`                | int      | Sequential attempt number (1st, 2nd, 3rd+) |
+| `Started on`                 | datetime | Timestamp when attempt started             |
+| `time_minutes`               | float    | Time taken in minutes (standardized)       |
+| `grade`                      | float    | Final grade out of 10                      |
+| `q1`, `q2`, `q3`, `q4`, `q5` | float    | Individual question scores (0-2 each)      |
+
+**Total Records:** ~2,000+ cleaned attempt records (exact count depends on filtering)
+
+### **How to Generate cleaned_data.csv**
+
+```bash
+# Navigate to the source code folder
+cd "CS3751_Source_Code/source_code"
+
+# Make sure the raw data files are in the data/ folder:
+# - data/quiz1_marks.csv
+# - data/quiz2_marks.csv
+# - data/quiz3_marks.csv
+
+# Run the preprocessing script
+python 01_data_preprocessing.py
+
+# This will output: data/cleaned_data.csv
+```
+
+### **Verification Checklist**
+
+After running `01_data_preprocessing.py`, verify that:
+
+- ✅ `data/cleaned_data.csv` file has been created
+- ✅ File size is > 100 KB (indicates substantial data)
+- ✅ Opening in Excel/CSV viewer shows ~2000+ rows
+- ✅ All expected columns are present (quiz, attempt_num, grade, q1-q5, time_minutes)
+- ✅ No empty grade or student code columns
+- ✅ Grade values are between 0-10
+
+---
+
+## �📈 Visualization Design Principles Used
 
 ### **Marks & Channels** (per visualization)
 
@@ -265,12 +363,11 @@ The notebook includes:
 
 ## 📝 Files Description
 
-| File                            | Purpose                                                      | Output                      |
-| ------------------------------- | ------------------------------------------------------------ | --------------------------- |
-| `01_data_preprocessing.py`      | Merges 3 quiz CSVs; parses time strings; filters outliers    | `cleaned_data.csv`          |
-| `02_generate_visualizations.py` | Reads cleaned data; generates all 10+ PNG figures            | `figures/*.png`             |
-| `03_build_report.py`            | Compiles report with intro, methodology, results, conclusion | `CS3751_Project_Report.pdf` |
-| Jupyter Notebook                | Interactive exploration + statistical validation             | PNG outputs + inline plots  |
+| File                            | Purpose                                                   | Output                     |
+| ------------------------------- | --------------------------------------------------------- | -------------------------- |
+| `01_data_preprocessing.py`      | Merges 3 quiz CSVs; parses time strings; filters outliers | `cleaned_data.csv`         |
+| `02_generate_visualizations.py` | Reads cleaned data; generates all 10+ PNG figures         | `figures/*.png`            |
+| Jupyter Notebook                | Interactive exploration + statistical validation          | PNG outputs + inline plots |
 
 ---
 
@@ -315,12 +412,12 @@ For questions or issues:
 - [ ] All 10 hypotheses documented with clear visualizations
 - [ ] Statistical tests included (Spearman, Kruskal-Wallis, etc.)
 - [ ] Design principles justified (marks, channels, colors)
-- [ ] PDF report includes Introduction, Methodology, Results, Discussion, Conclusion
-- [ ] Source code files (`01_`, `02_`, `03_`) executable and well-commented
+- [ ] Source code files (`01_`, `02_`) executable and well-commented
 - [ ] README.md (this file) included in submission
 - [ ] All visualization PNG files saved in `figures/` folder
-- [ ] `cleaned_data.csv` included in `data/` folder
+- [ ] `cleaned_data.csv` successfully generated in `data/` folder
 - [ ] Jupyter notebook exported as `.ipynb` for reproducibility
+- [ ] Data preprocessing completed without errors
 
 ---
 
